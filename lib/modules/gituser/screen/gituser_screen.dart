@@ -22,7 +22,6 @@ class GitUserScreen extends StatefulWidget {
 class _GitUserScreenState extends State<GitUserScreen> {
   GitUserController gitUserController = Get.find();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,12 +115,14 @@ class _GitUserScreenState extends State<GitUserScreen> {
               SizedBox(
                 height: SizeUtils.horizontalBlockSize * 1,
               ),
-              Expanded(
-                child: gitUserController.isLoading.value
-                    ? CircularProgressIndicator(
+              gitUserController.isLoading.value
+                  ? Center(
+                      child: CircularProgressIndicator(
                         color: AppColors.blackColor,
-                      )
-                    : SingleChildScrollView(
+                      ),
+                    )
+                  : Expanded(
+                      child: SingleChildScrollView(
                         child: ListView.builder(
                           padding: EdgeInsets.only(
                             top: SizeUtils.horizontalBlockSize * 2,
@@ -159,7 +160,7 @@ class _GitUserScreenState extends State<GitUserScreen> {
                           },
                         ),
                       ),
-              ),
+                    ),
             ],
           ),
         ),
